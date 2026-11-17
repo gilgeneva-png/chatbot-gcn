@@ -1,0 +1,19 @@
+[
+ {"q":"J'ai un bar qui possède une terrasse. Je peux y mettre du son pas trop fort jusqu'à quelle heure?","type":"bar","commune":"geneve","attendu":["ge_terrasses|25","rstp|28","rpbv|15A","lrdbhd|15"]},
+ {"q":"J'ai un bar qui possède une terrasse. Je peux laisser les gens mettre du son sur leur box et danser s'ils veulent?","type":"bar","commune":"geneve","attendu":["rstp|28","rrdbhd|10","lrdbhd|15","ge_terrasses|25"]},
+ {"q":"J'ai un bar avec une terrasse, régulièrement des gens y fument des pétards, je suis responsable?","type":"bar","commune":"geneve","attendu":["lrdbhd|24","lstup|19a","lif|6"]},
+ {"q":"J'ai souvent des gens qui partent avec des boissons de mon bar, c'est ok?","type":"bar","commune":"geneve","attendu":["ltgveat|7","ltgveat|2","lrdbhd|31"]},
+ {"q":"J'aimerai faire venir un dj dans mon bar, j'ai des démarches à faire?","type":"bar","commune":"geneve","attendu":["rrdbhd|10","lrdbhd|5","rrdbhd|18"]},
+ {"q":"J'ai un club (dancing), j'aimerai organiser une soirée dans une salle privée, je dois faire des démarches particulières?","type":"club","commune":"geneve","attendu":["lrdbhd|36","rrdbhd|56","lrdbhd|53"]},
+ {"q":"Si des gens fument dans mon club je risque quoi?","type":"club","commune":"geneve","attendu":["lif|8","lif|8A","lif|6"]},
+ {"q":"Si des gens fument dans mon bar je risque quoi?","type":"bar","commune":"geneve","attendu":["lif|8","lif|8A","lif|6"]},
+ {"q":"Les gens veulent m'acheter une bouteille pour partir avec, j'ai le droit?","type":"bar","commune":"geneve","attendu":["ltgveat|7","ltgveat|12","lrdbhd|31"]},
+ {"q":"J'ai des mineurs qui veulent entrer dans mon club et me disent que je n'ai pas le droit de les refuser. je fais quoi? ils ont raison?","type":"club","commune":"geneve","attendu":["lrdbhd|26","rrdbhd|11","lrdbhd|29"]},
+ {"q":"J'ai des mineurs qui veulent entrer dans mon bar et qui me disent que je n'ai pas le droit de les refuser. c'est vrai?","type":"bar","commune":"geneve","attendu":["lrdbhd|26","lrdbhd|29","lrdbhd|27"]},
+ {"q":"J'ai un bar avec autorisation d'animation musicale, je peux changer la sono comme je veux?","type":"bar","commune":"geneve","attendu":["rrdbhd|10","rrdbhd|35","lrdbhd|35"]},
+ {"q":"J'ai un club, je peux changer la sono sans faire des démarches?","type":"club","commune":"geneve","attendu":["rrdbhd|11","rrdbhd|35","lrdbhd|35"]},
+ {"q":"Si des gens vendent de la drogue dans mon établissement qu'est ce que je dois faire (je n'ai pas de preuve mais de fort soupçons)","type":"bar","commune":"geneve","attendu":["lrdbhd|24","lstup|19"]},
+ {"q":"Je suis un bar, j'ai besoin que l'exploitant travail combien de temps au minimum dedans?","type":"bar","commune":"geneve","attendu":["lrdbhd|22","rrdbhd|40"]},
+ {"q":"J'ai une association, on organise des soirées dans la buvette sans aucune autorisation, on risque quoi?","type":"buvette","commune":"geneve","attendu":["lrdbhd|16","lrdbhd|61","lrdbhd|65","rrdbhd|15"]},
+ {"q":"J'ai toujours la police municipale qui passe me mettre des amendes à cause du bruit sur la terrasse. Ils ont vraiment le droit? C'est toujours le même voisin qui se plaint.","type":"bar","commune":"geneve","attendu":["ge_terrasses|27","rpbv|15A","rstp|17","lrdbhd|66"]}
+]

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide juridique de la nuit · GCN</title>
+<meta name="description" content="Assistant documentaire du Grand Conseil de la Nuit : retrouve les articles de loi utiles aux exploitants de la nuit genevoise.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="entete">
+  <div class="entete-in">
+    <p class="surtitre">Grand Conseil de la Nuit <span class="pastille">bêta</span></p>
+    <h1>Guide juridique de la nuit</h1>
+    <p class="sous-titre">Posez votre question avec vos mots. Le guide retrouve les articles des textes officiels qui s'y rapportent. Information seulement, pas un avis juridique.</p>
+  </div>
+</header>
+
+<main class="page">
+  <section class="reglages" aria-label="Votre situation">
+    <label class="champ">
+      <span>Commune de l'établissement</span>
+      <select id="commune">
+        <option value="geneve">Genève (Ville)</option>
+        <option value="carouge">Carouge</option>
+        <option value="lancy">Lancy</option>
+        <option value="vernier">Vernier</option>
+        <option value="autre">Autre commune</option>
+      </select>
+    </label>
+    <label class="champ">
+      <span>Type d'établissement</span>
+      <select id="type">
+        <option value="bar">Bar</option>
+        <option value="club">Club (dancing ou cabaret-dancing)</option>
+        <option value="restaurant">Café-restaurant</option>
+        <option value="buvette">Association ou buvette</option>
+        <option value="manifestation">Organisateur d'événements</option>
+      </select>
+    </label>
+    <p id="avis-commune" class="avis" hidden>Les règlements de cette commune ne sont pas encore dans le guide. Les réponses ne couvrent que les textes cantonaux et fédéraux.</p>
+  </section>
+
+  <section id="fil" class="fil" aria-live="polite">
+    <div id="accueil" class="accueil">
+      <p class="accueil-titre">Exemples de questions</p>
+      <div class="exemples">
+        <button type="button" class="exemple">Jusqu'à quelle heure je peux exploiter ma terrasse ?</button>
+        <button type="button" class="exemple">Si des gens fument dans mon club, je risque quoi ?</button>
+        <button type="button" class="exemple">Des mineurs veulent entrer, j'ai le droit de les refuser ?</button>
+        <button type="button" class="exemple">Je veux faire venir un DJ, j'ai des démarches à faire ?</button>
+      </div>
+    </div>
+  </section>
+
+  <form id="saisie" class="saisie" autocomplete="off">
+    <label for="question" class="visuellement-cache">Votre question</label>
+    <textarea id="question" rows="2" maxlength="600" placeholder="Votre question, par exemple : un client veut repartir avec une bouteille, j'ai le droit ?" required></textarea>
+    <button type="submit" class="bouton-principal">Chercher</button>
+  </form>
+  <p id="chargement" class="note">Chargement des textes…</p>
+</main>
+
+<footer class="pied">
+  <details>
+    <summary>Textes consultés par le guide</summary>
+    <ul id="liste-textes" class="liste-textes"></ul>
+  </details>
+  <p>Le guide cite les textes tels qu'ils figurent dans les versions officielles indiquées. Seuls les textes publiés sur silgeneve.ch, fedlex.admin.ch et les sites des communes font foi. En cas de doute, adressez-vous à l'autorité compétente ou à l'équipe du GCN.</p>
+</footer>
+
+<template id="tpl-formulaire">
+  <form class="formulaire">
+    <p class="formulaire-titre">Transmettre la question à l'équipe du GCN</p>
+    <p class="note">L'équipe cherche la réponse et vous la renvoie. Les réponses validées enrichissent le guide.</p>
+    <label class="champ"><span>Votre question</span><textarea name="question" rows="3" maxlength="1500" required></textarea></label>
+    <div class="deux-colonnes">
+      <label class="champ"><span>Nom ou établissement</span><input name="nom" maxlength="120"></label>
+      <label class="champ"><span>E-mail pour la réponse</span><input name="email" type="email" maxlength="160" required></label>
+    </div>
+    <label class="piege" aria-hidden="true">Ne pas remplir <input name="site" tabindex="-1" autocomplete="off"></label>
+    <label class="case"><input type="checkbox" name="accord" required> J'accepte que ma question soit conservée par l'équipe du GCN pour y répondre et, sans mes coordonnées, pour enrichir le guide.</label>
+    <div class="actions">
+      <button type="submit" class="bouton-principal">Envoyer</button>
+      <button type="button" class="bouton-lien annuler">Annuler</button>
+    </div>
+    <p class="etat-envoi note" role="status"></p>
+  </form>
+</template>
+
+<script src="assets/config.js"></script>
+<script src="assets/search.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

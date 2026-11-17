@@ -1,0 +1,644 @@
+{
+ "_note": "Lexique du jargon de la nuit. 'declencheurs' = mots des membres ; 'termes' = mots employés par les textes officiels. À enrichir au fil des questions.",
+ "types": {
+  "bar": {
+   "label": "Bar",
+   "termes": [
+    "bar",
+    "bars",
+    "café-restaurant"
+   ]
+  },
+  "club": {
+   "label": "Club (dancing ou cabaret-dancing)",
+   "termes": [
+    "dancing",
+    "dancings",
+    "cabaret-dancing",
+    "cabarets-dancings"
+   ]
+  },
+  "restaurant": {
+   "label": "Café-restaurant",
+   "termes": [
+    "café-restaurant",
+    "cafés-restaurants",
+    "restauration"
+   ]
+  },
+  "buvette": {
+   "label": "Association ou buvette",
+   "termes": [
+    "buvette",
+    "buvettes",
+    "associative",
+    "associatives"
+   ]
+  },
+  "manifestation": {
+   "label": "Organisateur d'événements",
+   "termes": [
+    "manifestation",
+    "manifestations",
+    "organisateur"
+   ]
+  }
+ },
+ "groupes": [
+  {
+   "nom": "club",
+   "declencheurs": [
+    "club",
+    "clubs",
+    "boite",
+    "boîte de nuit",
+    "boite de nuit",
+    "discothèque",
+    "disco",
+    "dancing"
+   ],
+   "termes": [
+    "dancing",
+    "dancings",
+    "cabaret-dancing",
+    "cabarets-dancings"
+   ],
+   "type": "club"
+  },
+  {
+   "nom": "bar",
+   "declencheurs": [
+    "bar",
+    "bars",
+    "bistrot",
+    "troquet"
+   ],
+   "termes": [
+    "bar",
+    "bars",
+    "café-restaurant"
+   ],
+   "type": "bar"
+  },
+  {
+   "nom": "association",
+   "declencheurs": [
+    "association",
+    "asso",
+    "assos",
+    "collectif",
+    "buvette",
+    "buvettes"
+   ],
+   "termes": [
+    "buvette associative",
+    "buvettes associatives",
+    "association",
+    "associations",
+    "buvette"
+   ]
+  },
+  {
+   "nom": "musique",
+   "declencheurs": [
+    "du son",
+    "le son",
+    "musique",
+    "musical",
+    "musicale",
+    "box",
+    "enceinte",
+    "haut-parleur",
+    "volume",
+    "décibels",
+    "décibel",
+    "db",
+    "basses"
+   ],
+   "termes": [
+    "musique",
+    "sonore",
+    "sonores",
+    "niveau sonore",
+    "émissions sonores",
+    "fond sonore",
+    "bruit",
+    "diffusion",
+    "sons",
+    "volume",
+    "appareils reproducteurs de sons",
+    "animation",
+    "dB"
+   ]
+  },
+  {
+   "nom": "danse",
+   "declencheurs": [
+    "danser",
+    "danse",
+    "dansent",
+    "dance floor",
+    "dancefloor",
+    "piste de danse"
+   ],
+   "termes": [
+    "danse",
+    "danser"
+   ]
+  },
+  {
+   "nom": "artiste",
+   "declencheurs": [
+    "dj",
+    "deejay",
+    "artiste",
+    "artistes",
+    "groupe",
+    "concert",
+    "concerts",
+    "live",
+    "spectacle",
+    "performance",
+    "musicien",
+    "musiciens",
+    "chanteur"
+   ],
+   "termes": [
+    "animation",
+    "animations",
+    "spectacle",
+    "spectacles",
+    "concert",
+    "concerts",
+    "divertissement",
+    "musiciens"
+   ]
+  },
+  {
+   "nom": "installation son",
+   "declencheurs": [
+    "sono",
+    "sonorisation",
+    "système son",
+    "systeme son",
+    "ampli",
+    "amplificateur",
+    "changer la sono",
+    "limiteur",
+    "enceintes"
+   ],
+   "termes": [
+    "limiteur",
+    "niveau sonore",
+    "fond sonore",
+    "dB",
+    "sonore",
+    "animation",
+    "amplification"
+   ]
+  },
+  {
+   "nom": "terrasse",
+   "declencheurs": [
+    "terrasse",
+    "terrasses",
+    "dehors",
+    "extérieur",
+    "trottoir"
+   ],
+   "termes": [
+    "terrasse",
+    "terrasses"
+   ]
+  },
+  {
+   "nom": "horaire",
+   "declencheurs": [
+    "quelle heure",
+    "heure",
+    "heures",
+    "horaire",
+    "horaires",
+    "tard",
+    "minuit",
+    "fermeture",
+    "fermer",
+    "ouverture",
+    "ouvrir",
+    "nuit"
+   ],
+   "termes": [
+    "horaire",
+    "horaires",
+    "heures",
+    "heure",
+    "fermeture",
+    "exploitation",
+    "minuit"
+   ]
+  },
+  {
+   "nom": "fumer",
+   "declencheurs": [
+    "fumer",
+    "fume",
+    "fument",
+    "fumeur",
+    "fumeurs",
+    "clope",
+    "clopes",
+    "cigarette",
+    "cigarettes",
+    "vapoter",
+    "vape",
+    "chicha",
+    "tabac"
+   ],
+   "termes": [
+    "fumer",
+    "fumée",
+    "interdiction de fumer",
+    "tabac",
+    "fumeurs"
+   ]
+  },
+  {
+   "nom": "cannabis",
+   "declencheurs": [
+    "pétard",
+    "pétards",
+    "petard",
+    "joint",
+    "joints",
+    "beuh",
+    "shit",
+    "weed",
+    "cannabis",
+    "herbe",
+    "spliff"
+   ],
+   "termes": [
+    "stupéfiants",
+    "cannabis",
+    "cannabique",
+    "consommation"
+   ]
+  },
+  {
+   "nom": "drogue",
+   "declencheurs": [
+    "drogue",
+    "drogues",
+    "dealer",
+    "dealers",
+    "deal",
+    "dealent",
+    "trafic",
+    "coke",
+    "cocaïne",
+    "mdma",
+    "ecstasy",
+    "taz",
+    "kétamine",
+    "stupéfiants",
+    "vendent de la drogue",
+    "vend de la drogue"
+   ],
+   "termes": [
+    "stupéfiants",
+    "trafic",
+    "commerce",
+    "aliène",
+    "ordre public",
+    "maintien de l'ordre",
+    "police"
+   ]
+  },
+  {
+   "nom": "emporter",
+   "declencheurs": [
+    "partir avec",
+    "partent avec",
+    "repartir avec",
+    "emporter",
+    "à l'emporter",
+    "take away",
+    "à emporter",
+    "dehors avec"
+   ],
+   "termes": [
+    "vente à l'emporter",
+    "emporter",
+    "boissons alcooliques"
+   ]
+  },
+  {
+   "nom": "bouteille",
+   "declencheurs": [
+    "bouteille",
+    "bouteilles",
+    "verre",
+    "verres",
+    "boissons",
+    "boisson",
+    "alcool",
+    "alcools",
+    "bière",
+    "bières",
+    "vin",
+    "shot",
+    "shots"
+   ],
+   "termes": [
+    "boissons alcooliques",
+    "boissons",
+    "alcool",
+    "alcooliques"
+   ]
+  },
+  {
+   "nom": "mineurs",
+   "declencheurs": [
+    "mineur",
+    "mineurs",
+    "mineure",
+    "moins de 18",
+    "moins de 16",
+    "ado",
+    "ados",
+    "adolescent",
+    "adolescents",
+    "jeunes",
+    "16 ans",
+    "18 ans",
+    "âge",
+    "age"
+   ],
+   "termes": [
+    "mineurs",
+    "âge",
+    "âge d'admission",
+    "moins de 16 ans",
+    "moins de 18 ans",
+    "restrictions d'accès"
+   ]
+  },
+  {
+   "nom": "accès",
+   "declencheurs": [
+    "refuser",
+    "refuse",
+    "refus",
+    "entrer",
+    "entrée",
+    "rentrer",
+    "accès",
+    "videur",
+    "videurs",
+    "sélection",
+    "face control",
+    "laisser entrer"
+   ],
+   "termes": [
+    "accès",
+    "admission",
+    "restrictions d'accès",
+    "refuser",
+    "obligation de servir"
+   ]
+  },
+  {
+   "nom": "exploitant",
+   "declencheurs": [
+    "exploitant",
+    "exploitante",
+    "gérant",
+    "gérante",
+    "patron",
+    "patronne",
+    "titulaire",
+    "diplôme",
+    "présent",
+    "présence",
+    "sur place",
+    "combien de temps",
+    "travailler dedans"
+   ],
+   "termes": [
+    "exploitant",
+    "exploitation personnelle et effective",
+    "présence",
+    "personnellement",
+    "effectivement"
+   ]
+  },
+  {
+   "nom": "démarches",
+   "declencheurs": [
+    "démarche",
+    "démarches",
+    "autorisation",
+    "autorisations",
+    "permis",
+    "papiers",
+    "déclarer",
+    "annoncer",
+    "demander",
+    "formulaire"
+   ],
+   "termes": [
+    "autorisation",
+    "requête",
+    "annonce",
+    "annoncer",
+    "permission",
+    "autorisations"
+   ]
+  },
+  {
+   "nom": "sanctions",
+   "declencheurs": [
+    "risque",
+    "risques",
+    "risquer",
+    "je risque",
+    "on risque",
+    "sanction",
+    "sanctions",
+    "amende",
+    "amendes",
+    "punir",
+    "puni",
+    "illégal",
+    "interdit"
+   ],
+   "termes": [
+    "amende",
+    "amendes",
+    "amendes administratives",
+    "sanctions",
+    "mesures administratives",
+    "fermeture",
+    "contravention",
+    "sanctions pénales"
+   ]
+  },
+  {
+   "nom": "police",
+   "declencheurs": [
+    "police",
+    "police municipale",
+    "flic",
+    "flics",
+    "agent",
+    "agents",
+    "apm",
+    "contrôle",
+    "contrôles"
+   ],
+   "termes": [
+    "police",
+    "agents",
+    "contrôle",
+    "contrôles",
+    "constat",
+    "police municipale"
+   ]
+  },
+  {
+   "nom": "voisinage",
+   "declencheurs": [
+    "voisin",
+    "voisins",
+    "voisine",
+    "plainte",
+    "plaintes",
+    "se plaint",
+    "se plaignent",
+    "nuisance",
+    "nuisances",
+    "tapage",
+    "bruit"
+   ],
+   "termes": [
+    "voisinage",
+    "tranquillité",
+    "tranquillité publique",
+    "nuisances",
+    "bruit",
+    "plaintes",
+    "riverains",
+    "tranquillité nocturne"
+   ]
+  },
+  {
+   "nom": "contester",
+   "declencheurs": [
+    "contester",
+    "recours",
+    "faire recours",
+    "ont le droit",
+    "ont vraiment le droit",
+    "injuste",
+    "abusif"
+   ],
+   "termes": [
+    "recours",
+    "voies de recours",
+    "décision",
+    "décisions"
+   ]
+  },
+  {
+   "nom": "événement",
+   "declencheurs": [
+    "soirée",
+    "soirées",
+    "salle privée",
+    "salle",
+    "événement",
+    "évènement",
+    "event",
+    "fête",
+    "fêtes",
+    "organiser",
+    "organise",
+    "organisons"
+   ],
+   "termes": [
+    "manifestation",
+    "manifestations",
+    "événement",
+    "divertissement public",
+    "organisateur",
+    "local"
+   ]
+  },
+  {
+   "nom": "responsabilité",
+   "declencheurs": [
+    "responsable",
+    "responsabilité",
+    "coupable",
+    "ma faute",
+    "obligé",
+    "obligée"
+   ],
+   "termes": [
+    "responsabilité",
+    "responsable",
+    "obligations",
+    "veiller",
+    "exploitant"
+   ]
+  },
+  {
+   "nom": "personnel",
+   "declencheurs": [
+    "staff",
+    "personnel",
+    "employé",
+    "employés",
+    "serveur",
+    "serveuse",
+    "barman",
+    "barmaid",
+    "équipe"
+   ],
+   "termes": [
+    "personnel",
+    "employés",
+    "travailleurs"
+   ]
+  },
+  {
+   "nom": "sans autorisation",
+   "declencheurs": [
+    "sans autorisation",
+    "sans aucune autorisation",
+    "pas d'autorisation",
+    "pas d autorisation",
+    "sans permis",
+    "au noir",
+    "sans rien demander"
+   ],
+   "termes": [
+    "défaut d'autorisation",
+    "sans autorisation",
+    "fermeture",
+    "dépourvue d'autorisation"
+   ]
+  },
+  {
+   "nom": "type restaurant",
+   "type": "restaurant",
+   "declencheurs": [
+    "restaurant",
+    "resto",
+    "café-restaurant",
+    "brasserie"
+   ],
+   "termes": []
+  }
+ ]
+}
