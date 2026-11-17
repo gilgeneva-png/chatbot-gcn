@@ -3,90 +3,91 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guide juridique de la nuit · GCN</title>
-<meta name="description" content="Assistant documentaire du Grand Conseil de la Nuit : retrouve les articles de loi utiles aux exploitants de la nuit genevoise.">
+<title>Conseiller nocturne</title>
+<meta name="description" content="Conseiller nocturne : retrouve les articles de loi utiles aux exploitant·e·s de la nuit genevoise.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<header class="entete">
-  <div class="entete-in">
-    <p class="surtitre">Grand Conseil de la Nuit <span class="pastille">bêta</span></p>
-    <h1>Guide juridique de la nuit</h1>
-    <p class="sous-titre">Posez votre question avec vos mots. Le guide retrouve les articles des textes officiels qui s'y rapportent. Information seulement, pas un avis juridique.</p>
-  </div>
+<nav class="barre">
+  <span class="barre-actif">Conseiller nocturne</span>
+  <span>Bêta</span>
+  <a href="#textes">Textes</a>
+</nav>
+
+<header class="onde-zone" aria-hidden="true">
+  <canvas id="onde"></canvas>
 </header>
 
 <main class="page">
-  <section class="reglages" aria-label="Votre situation">
-    <label class="champ">
-      <span>Commune de l'établissement</span>
-      <select id="commune">
-        <option value="geneve">Genève (Ville)</option>
-        <option value="carouge">Carouge</option>
-        <option value="lancy">Lancy</option>
-        <option value="vernier">Vernier</option>
-        <option value="autre">Autre commune</option>
-      </select>
-    </label>
-    <label class="champ">
-      <span>Type d'établissement</span>
-      <select id="type">
-        <option value="bar">Bar</option>
-        <option value="club">Club (dancing ou cabaret-dancing)</option>
-        <option value="restaurant">Café-restaurant</option>
-        <option value="buvette">Association ou buvette</option>
-        <option value="manifestation">Organisateur d'événements</option>
-      </select>
-    </label>
-    <p id="avis-commune" class="avis" hidden>Les règlements de cette commune ne sont pas encore dans le guide. Les réponses ne couvrent que les textes cantonaux et fédéraux.</p>
+  <section class="section">
+    <h1 class="titre-vague points">Conseiller nocturne</h1>
+    <p class="chapeau">Posez votre question avec vos mots. Le conseiller retrouve les articles des textes officiels qui s'y rapportent. Information seulement, pas un avis juridique.</p>
   </section>
 
-  <section id="fil" class="fil" aria-live="polite">
-    <div id="accueil" class="accueil">
-      <p class="accueil-titre">Exemples de questions</p>
-      <div class="exemples">
-        <button type="button" class="exemple">Jusqu'à quelle heure je peux exploiter ma terrasse ?</button>
-        <button type="button" class="exemple">Si des gens fument dans mon club, je risque quoi ?</button>
-        <button type="button" class="exemple">Des mineurs veulent entrer, j'ai le droit de les refuser ?</button>
-        <button type="button" class="exemple">Je veux faire venir un DJ, j'ai des démarches à faire ?</button>
-      </div>
-    </div>
+  <section class="section reglages" aria-label="Votre situation">
+    <fieldset class="choix" id="commune">
+      <legend>Commune</legend>
+      <label><input type="radio" name="commune" value="geneve" checked><span>Genève</span></label>
+      <label><input type="radio" name="commune" value="carouge"><span>Carouge</span></label>
+      <label><input type="radio" name="commune" value="lancy"><span>Lancy</span></label>
+      <label><input type="radio" name="commune" value="vernier"><span>Vernier</span></label>
+      <label><input type="radio" name="commune" value="autre"><span>Autre</span></label>
+    </fieldset>
+    <fieldset class="choix" id="type">
+      <legend>Établissement</legend>
+      <label><input type="radio" name="type" value="bar" checked><span>Bar</span></label>
+      <label><input type="radio" name="type" value="club"><span>Club</span></label>
+      <label><input type="radio" name="type" value="restaurant"><span>Café-restaurant</span></label>
+      <label><input type="radio" name="type" value="buvette"><span>Association</span></label>
+      <label><input type="radio" name="type" value="manifestation"><span>Événements</span></label>
+    </fieldset>
+    <p id="avis-commune" class="avis" hidden>Les règlements de cette commune ne sont pas encore dans le conseiller. Les réponses ne couvrent que les textes cantonaux et fédéraux.</p>
   </section>
 
   <form id="saisie" class="saisie" autocomplete="off">
     <label for="question" class="visuellement-cache">Votre question</label>
-    <textarea id="question" rows="2" maxlength="600" placeholder="Votre question, par exemple : un client veut repartir avec une bouteille, j'ai le droit ?" required></textarea>
-    <button type="submit" class="bouton-principal">Chercher</button>
+    <textarea id="question" rows="2" maxlength="600" placeholder="Un client veut repartir avec une bouteille, j'ai le droit ?" required></textarea>
+    <button type="submit" class="bouton-texte">Demander</button>
   </form>
-  <p id="chargement" class="note">Chargement des textes…</p>
+  <p id="chargement" class="note centre">Chargement des textes…</p>
+
+  <section id="accueil" class="section exemples-zone">
+    <p class="legende">Exemples</p>
+    <div class="exemples">
+      <button type="button" class="exemple">Jusqu'à quelle heure je peux exploiter ma terrasse ?</button>
+      <button type="button" class="exemple">Si des gens fument dans mon club, je risque quoi ?</button>
+      <button type="button" class="exemple">Des mineurs veulent entrer, j'ai le droit de les refuser ?</button>
+      <button type="button" class="exemple">Je veux faire venir un DJ, j'ai des démarches à faire ?</button>
+    </div>
+  </section>
+
+  <div id="fil" class="fil" aria-live="polite"></div>
 </main>
 
-<footer class="pied">
-  <details>
-    <summary>Textes consultés par le guide</summary>
-    <ul id="liste-textes" class="liste-textes"></ul>
-  </details>
-  <p>Le guide cite les textes tels qu'ils figurent dans les versions officielles indiquées. Seuls les textes publiés sur silgeneve.ch, fedlex.admin.ch et les sites des communes font foi. En cas de doute, adressez-vous à l'autorité compétente ou à l'équipe du GCN.</p>
+<footer class="pied" id="textes">
+  <h2 class="titre-vague petit points">Les textes</h2>
+  <ul id="liste-textes" class="liste-textes"></ul>
+  <p class="note centre">Le conseiller cite les textes tels qu'ils figurent dans les versions indiquées. Seuls les textes publiés sur silgeneve.ch, fedlex.admin.ch et les sites des communes font foi. En cas de doute, adressez-vous à l'autorité compétente ou à l'association.</p>
 </footer>
 
 <template id="tpl-formulaire">
   <form class="formulaire">
-    <p class="formulaire-titre">Transmettre la question à l'équipe du GCN</p>
-    <p class="note">L'équipe cherche la réponse et vous la renvoie. Les réponses validées enrichissent le guide.</p>
+    <h3 class="formulaire-titre">Transmettre à l'association</h3>
+    <p class="note">L'association cherche la réponse et vous la renvoie. Les réponses validées enrichissent le conseiller.</p>
     <label class="champ"><span>Votre question</span><textarea name="question" rows="3" maxlength="1500" required></textarea></label>
     <div class="deux-colonnes">
       <label class="champ"><span>Nom ou établissement</span><input name="nom" maxlength="120"></label>
       <label class="champ"><span>E-mail pour la réponse</span><input name="email" type="email" maxlength="160" required></label>
     </div>
     <label class="piege" aria-hidden="true">Ne pas remplir <input name="site" tabindex="-1" autocomplete="off"></label>
-    <label class="case"><input type="checkbox" name="accord" required> J'accepte que ma question soit conservée par l'équipe du GCN pour y répondre et, sans mes coordonnées, pour enrichir le guide.</label>
+    <label class="case"><input type="checkbox" name="accord" required> <span>J'accepte que ma question soit conservée par l'association pour y répondre et, sans mes coordonnées, pour enrichir le conseiller.</span></label>
     <div class="actions">
-      <button type="submit" class="bouton-principal">Envoyer</button>
-      <button type="button" class="bouton-lien annuler">Annuler</button>
+      <button type="submit" class="bouton-texte">Envoyer</button>
+      <button type="button" class="bouton-texte discret annuler">Annuler</button>
     </div>
     <p class="etat-envoi note" role="status"></p>
   </form>
@@ -94,6 +95,7 @@
 
 <script src="assets/config.js"></script>
 <script src="assets/search.js"></script>
+<script src="assets/onde.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

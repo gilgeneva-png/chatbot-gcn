@@ -6,11 +6,12 @@
   const $ = (s, el) => (el || document).querySelector(s);
 
   const el = {
-    commune: $("#commune"), type: $("#type"), avis: $("#avis-commune"),
+    avis: $("#avis-commune"),
     fil: $("#fil"), accueil: $("#accueil"), saisie: $("#saisie"), question: $("#question"),
     chargement: $("#chargement"), liste: $("#liste-textes"),
   };
-  const NOMS_COMMUNES = { geneve: "Genève (Ville)", carouge: "Carouge", lancy: "Lancy", vernier: "Vernier", autre: "Autre commune" };
+  const NOMS_COMMUNES = { geneve: "Genève", carouge: "Carouge", lancy: "Lancy", vernier: "Vernier", autre: "Autre commune" };
+  const valeur = (nom) => (document.querySelector(`input[name="${nom}"]:checked`) || {}).value;
   let index = null;
 
   /* ---------- Préférences (mémorisées sur l'appareil) ---------- */
@@ -18,10 +19,38 @@
   function ecrirePref(k, v) { try { localStorage.setItem("gcn-" + k, v); } catch (e) { /* stockage indisponible */ } }
   for (const k of ["commune", "type"]) {
     const v = lirePref(k);
-    if (v && [...el[k].options].some((o) => o.value === v)) el[k].value = v;
-    el[k].addEventListener("change", () => { ecrirePref(k, el[k].value); majAvis(); });
+    const cible = v && document.querySelector(`input[name="${k}"][value="${v}"]`);
+    if (cible) cible.checked = true;
+    document.querySelectorAll(`input[name="${k}"]`).forEach((inp) =>
+      inp.addEventListener("change", () => { ecrirePref(k, valeur(k)); majAvis(); }));
   }
-  function majAvis() { el.avis.hidden = el.commune.value !== "autre"; }
+  function majAvis() { el.avis.hidden = valeur("commune") !== "autre"; }
+
+  /* Titres en vague : chaque lettre légèrement décalée, comme posée sur une onde */
+  function vague(h) {
+    const txt = h.textContent;
+    h.setAttribute("aria-label", txt);
+    h.textContent = "";
+    let i = 0;
+    txt.split(" ").forEach((motTxt, k) => {
+      if (k) h.appendChild(document.createTextNode(" "));
+      const mot = document.createElement("span");
+      mot.className = "mot";
+      mot.setAttribute("aria-hidden", "true");
+      for (const ch of motTxt) {
+        const s = document.createElement("span");
+        s.className = "l";
+        s.textContent = ch;
+        const y = Math.sin(i * 0.55) * 0.06, rz = Math.cos(i * 0.55) * 2.2;
+        s.style.transform = `translateY(${y.toFixed(3)}em) rotate(${rz.toFixed(2)}deg)`;
+        mot.appendChild(s);
+        i++;
+      }
+      i++;
+      h.appendChild(mot);
+    });
+  }
+  document.querySelectorAll(".titre-vague").forEach(vague);
   majAvis();
 
   /* ---------- Chargement ---------- */
@@ -41,8 +70,8 @@
     const ordre = { "fédéral": 0, "cantonal": 1, "communal": 2 };
     docs.slice().sort((a, b) => ordre[a.niveau] - ordre[b.niveau]).forEach((d) => {
       const li = document.createElement("li");
-      const lieu = d.commune ? ` · ${NOMS_COMMUNES[d.commune]}` : ` · ${d.niveau}`;
-      li.innerHTML = `<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.sigle)}</a> (${esc(d.ref)}${esc(lieu)}) — ${esc(d.titre)}${d.version ? ". " + esc(capital(d.version)) : ""}.`;
+      const lieu = d.commune ? NOMS_COMMUNES[d.commune] : d.niveau;
+      li.innerHTML = `<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.sigle)} · ${esc(d.ref)}</a><span>${esc(d.titre)} — ${esc(lieu)}${d.version ? ", " + esc(d.version) : ""}</span>`;
       el.liste.appendChild(li);
     });
   }
@@ -51,6 +80,8 @@
   document.querySelectorAll(".exemple").forEach((b) =>
     b.addEventListener("click", () => { el.question.value = b.textContent; envoyerQuestion(); }));
   el.saisie.addEventListener("submit", (e) => { e.preventDefault(); envoyerQuestion(); });
+  const ajuster = () => { el.question.style.height = "auto"; el.question.style.height = el.question.scrollHeight + "px"; };
+  el.question.addEventListener("input", ajuster);
   el.question.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); envoyerQuestion(); }
   });
@@ -60,15 +91,19 @@
     if (!q || !index) return;
     el.accueil.hidden = true;
     el.question.value = "";
-    const bulle = document.createElement("div");
-    bulle.className = "bulle-question";
-    bulle.textContent = q;
-    el.fil.appendChild(bulle);
-    const commune = el.commune.value;
-    const r = M.rechercher(index, q, { commune, type: el.type.value, max: 4 });
-    const bloc = rendreReponse(q, r, commune);
-    el.fil.appendChild(bloc);
-    bulle.scrollIntoView({ behavior: "smooth", block: "start" });
+    ajuster();
+    const commune = valeur("commune");
+    const r = M.rechercher(index, q, { commune, type: valeur("type"), max: 4 });
+    const echange = document.createElement("section");
+    echange.className = "echange";
+    const titre = document.createElement("h2");
+    titre.className = "question-titre points";
+    titre.textContent = q;
+    echange.appendChild(titre);
+    echange.appendChild(rendreReponse(q, r, commune));
+    el.fil.prepend(echange);
+    if (window.OndeNocturne) window.OndeNocturne.caillou();
+    titre.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   const STATUTS = {
@@ -104,11 +139,11 @@
     const relais = document.createElement("div");
     relais.className = "relais";
     const faible = r.confiance === "faible" || r.confiance === "aucune";
-    relais.innerHTML = `<p>${faible ? "L'équipe du GCN peut chercher la réponse pour vous." : "Ces articles ne répondent pas à votre question ?"}</p>`;
+    relais.innerHTML = `<p>${faible ? "L'association peut chercher la réponse pour vous." : "Ces articles ne répondent pas à votre question ?"}</p>`;
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = faible ? "bouton-principal" : "bouton-second";
-    btn.textContent = "Transmettre la question à l'équipe";
+    btn.className = "bouton-texte";
+    btn.textContent = "Transmettre à l'association";
     btn.addEventListener("click", () => {
       btn.disabled = true;
       relais.after(formulaire(q, r, commune, () => { btn.disabled = false; }));
@@ -121,8 +156,8 @@
   function carteFaq(f) {
     const c = document.createElement("article");
     c.className = "faq";
-    c.innerHTML = `<p class="etiquette">Réponse validée par l'équipe du GCN${f.date ? " · " + esc(f.date) : ""}</p>
-      <h2 class="article-titre">${esc(f.question)}</h2>
+    c.innerHTML = `<p class="etiquette">Réponse validée par l'association${f.date ? " · " + esc(f.date) : ""}</p>
+      <h3 class="article-titre">${esc(f.question)}</h3>
       <p class="article-texte">${esc(f.reponse)}</p>
       ${f.sources && f.sources.length ? `<p class="article-source">Sources : ${esc(f.sources.join(" ; "))}</p>` : ""}`;
     return c;
@@ -134,20 +169,20 @@
     const partie = c.nparts > 1 ? ` (partie ${c.part}/${c.nparts})` : "";
     const carte = document.createElement("article");
     carte.className = "article";
-    const lieu = d.commune ? `règlement communal · ${NOMS_COMMUNES[d.commune]}` : d.niveau;
+    const lieu = d.commune ? `règlement communal, ${NOMS_COMMUNES[d.commune]}` : d.niveau;
     carte.innerHTML = `<p class="etiquette">${i === 0 ? "Article le plus proche" : "Voir aussi"}</p>
-      <h2 class="article-titre"><span class="num">${esc(d.sigle)}, ${esc(art)}</span>${c.titre ? " · " + esc(c.titre) : ""}${esc(partie)}</h2>
+      <h3 class="article-titre"><span class="num">${esc(d.sigle)}, ${esc(art)}</span>${c.titre ? " · " + esc(c.titre) : ""}${esc(partie)}</h3>
       <p class="article-source">${esc(d.titre)} (${esc(d.ref)}, ${esc(lieu)})</p>
       <p class="article-texte">${surligner(c.text, x.trouves)}</p>
       <div class="article-pied">
-        <a href="${esc(d.url)}" target="_blank" rel="noopener">Texte officiel</a>
+        <a class="lien" href="${esc(d.url)}" target="_blank" rel="noopener">Texte officiel</a>
         <span class="version">${esc(capital(d.version || "version non datée"))}</span>
       </div>`;
     const texte = $(".article-texte", carte);
     if (c.text.length > 520) {
       texte.classList.add("replie");
       const b = document.createElement("button");
-      b.type = "button"; b.className = "bouton-lien"; b.textContent = "Lire tout le passage";
+      b.type = "button"; b.className = "lien"; b.textContent = "Lire tout le passage";
       b.addEventListener("click", () => {
         const ouvert = texte.classList.toggle("replie");
         b.textContent = ouvert ? "Lire tout le passage" : "Réduire";
@@ -200,7 +235,7 @@
       etat.textContent = "Envoi…";
       fetch(CFG.ENVOI_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(envoi) })
         .then(() => {
-          f.innerHTML = `<p class="formulaire-titre">Question transmise</p><p class="note">L'équipe du GCN vous répondra à ${esc(envoi.email)}. Merci.</p>`;
+          f.innerHTML = `<h3 class="formulaire-titre">Question transmise</h3><p class="note">L'association vous répondra à ${esc(envoi.email)}. Merci.</p>`;
         })
         .catch(() => {
           bouton.disabled = false;

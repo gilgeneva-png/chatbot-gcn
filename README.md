@@ -1,6 +1,6 @@
-# Guide juridique de la nuit (GCN) — bêta
+# Conseiller nocturne — bêta
 
-Assistant documentaire pour les membres du Grand Conseil de la Nuit. Le membre choisit sa commune et son type d'établissement, pose sa question avec ses mots, et le guide affiche les articles des textes officiels qui s'y rapportent, avec un lien vers le texte et sa date de version. Si rien ne répond, la question part à l'équipe.
+Assistant documentaire pour les membres de l'association. Le membre choisit sa commune et son type d'établissement, pose sa question avec ses mots, et le guide affiche les articles des textes officiels qui s'y rapportent, avec un lien vers le texte et sa date de version. Si rien ne répond, la question part à l'association.
 
 Le guide fonctionne entièrement dans le navigateur : pas de serveur, pas d'IA externe, pas de clé API.
 
